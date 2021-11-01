@@ -27,7 +27,6 @@ public class StaffJdbcDao {
             st1.setStuff_type(rs.getString("stuff_type"));
             st1.setSalary(rs.getInt("salary"));
             return  st1;
-
         }));
     };
 }

@@ -1,6 +1,9 @@
 package com.example.practice2;
 
+import com.example.practice2.AOP.Developer;
+import com.example.practice2.AOP.DeveloperDecorator;
 import com.example.practice2.DAO.StaffJdbcDao;
+import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -20,6 +23,14 @@ public class Practice2Application {
         List<Staff> list = staffJdbcDao.getAllStaff();
         list.forEach(System.out::println);
 
+        Developer target = new Developer();
+        ProxyFactory pf = new ProxyFactory();
+        pf.addAdvice(new DeveloperDecorator());
+        pf.setTarget(target);
+        Developer proxy = (Developer) pf.getProxy();
+        target.speak();
+        System.out.println("");
+        proxy.speak();
 
     }
 
